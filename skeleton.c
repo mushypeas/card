@@ -1,4 +1,6 @@
 #include <ncurses.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 int key_in;
 
@@ -54,7 +56,7 @@ void display_gameboard() {
 		move(lines/2, cols/2);
 		printf("┌───┐┌───┐┌───┐┌───┐\n");
 		printf("│ %c ││ %c ││ %c ││ %c │\n", cards[i][0],cards[i][1],cards[i][2],cards[i][3]);
-		printf("└───┘└───┘└───┘└───┘\n");
+		printf("└───┘└───┘└───┘└───┘\n"), fflush(stdout);
 	}
 }
 
