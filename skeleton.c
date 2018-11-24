@@ -1,7 +1,6 @@
 #include <ncurses.h>
 #include <stdlib.h>
 #include <stdio.h>
-
 int key_in;
 
 char cards[4][4];		// Cards
@@ -10,25 +9,21 @@ void initialize();
 void display();
 void display_gameboard();
 int box_char(int x);
-void draw_box(int line, int col, int height, int width);
 
 int main() {	
 
 	initialize();
 
 	while(1) {
-		key_in = getch();
-
-		// TODO
-		// Input processing. When 'q' or 'Q' are pressed, break this while loop.
-		// Initialize 16 cards A, B, C, ..., P
 		int c = 0;
 		for(int i=0; i<4; i++)
 			for(int j=0; j<4; j++)
 				cards[i][j] = 'A' + c++;
+        fflush(stdout);
+		display();
+		key_in = getch();
 		if(key_in == 'Q' || key_in == 'q')
 			break;
-		display();
 	}
 
 	endwin();	// Do NOT modify
@@ -52,11 +47,15 @@ void display() {
 }
 
 void display_gameboard() {
-	for(int i=0; i<4; i++){
-		printf("┌───┐┌───┐┌───┐┌───┐\n");
-		printf("│ %c ││ %c ││ %c ││ %c │\n", cards[i][0],cards[i][1],cards[i][2],cards[i][3]);
-		printf("└───┘└───┘└───┘└───┘\n"), fflush(stdout);
-	}
+    mvprintw(0,0,"*Monospaced font recommended");
+	for(int i=0;i<4;i++)
+		for(int j=0; j<4; j++){
+            int y=LINES/2+(i-2)*3, x=COLS/2+(j-2)*5;
+			move(y,x);
+			addch(box_char(7)),addch(box_char(10)),addch(box_char(10)),addch(box_char(10)),addch(box_char(9)), move(y+1,x);
+			addch(box_char(11)),printw(" %c ", cards[i][j]),addch(box_char(11)), move(y+2,x);
+			addch(box_char(1)),addch(box_char(10)),addch(box_char(10)),addch(box_char(10)),addch(box_char(3));
+		}
 }
 
 
@@ -84,5 +83,3 @@ int box_char(int x) {
 // 		Example)
 // 		lines and cols can be a coordinate of upper-left-corner
 //		height and width indicates box size
-void draw_box(int lines, int cols, int height, int width) {
-}
