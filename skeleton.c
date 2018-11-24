@@ -51,9 +51,10 @@ void display() {
 
 void display_gameboard() {
 	for(int i=0; i<4; i++){
-		printw("┌───┐┌───┐┌───┐┌───┐\n");
-		printw("│ %c ││ %c ││ %c ││ %c │\n", cards[i][0],cards[i][1],cards[i][2],cards[i][3]);
-		printw("└───┘└───┘└───┘└───┘\n");
+//printw("┌───┐┌───┐┌───┐┌───┐\n");
+//printw("│ %c ││ %c ││ %c ││ %c │\n", cards[i][0],cards[i][1],cards[i][2],cards[i][3]);
+//printw("└───┘└───┘└───┘└───┘\n");
+		mvprintw(LINES/2+i, COLS/2, "%c %d", key_in, key_in)
 	}
 }
 
