@@ -52,12 +52,13 @@ void display() {
 }
 
 void display_gameboard() {
-	for(int i=0; i<4; i++){
-		move(lines/2, cols/2);
-		printf("┌───┐┌───┐┌───┐┌───┐\n");
-		printf("│ %c ││ %c ││ %c ││ %c │\n", cards[i][0],cards[i][1],cards[i][2],cards[i][3]);
-		printf("└───┘└───┘└───┘└───┘\n"), fflush(stdout);
-	}
+	for(int i=0;i<4;i++)
+		for(int j=0; j<4; j++){
+			mv(LINES/2-2+i, COLS/2-2+j);
+			addch(box_char(1)),addch(box_char(10)),addch(box_char(3)), printw("\n");
+			addch(box_char(11)),printw("%c", cards[i][j]),addch(box_char(11)), printw("\n");
+			addch(box_char(7)),addch(box_char(10)),addch(box_char(9));
+		}
 }
 
 
@@ -85,5 +86,6 @@ int box_char(int x) {
 // 		Example)
 // 		lines and cols can be a coordinate of upper-left-corner
 //		height and width indicates box size
-void draw_box(int lines, int cols, int height, int width) {
+void draw_box(int lines, int cols) {
+	return;
 }
