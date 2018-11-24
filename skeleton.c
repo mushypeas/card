@@ -20,7 +20,12 @@ int main() {
 		// TODO
 		// Input processing. When 'q' or 'Q' are pressed, break this while loop.
 		// Initialize 16 cards A, B, C, ..., P
-
+		int c = 0;
+		for(int i=0; i<4; i++)
+			for(int j=0; j<4; j++)
+				cards[i][j] = 'A' + c++;
+		if(key_in == 'Q' || key_in == 'q')
+			break;
 		display();
 	}
 
@@ -45,7 +50,11 @@ void display() {
 }
 
 void display_gameboard() {
-	/* TODO */
+	for(int i=0; i<4; i++){
+		printw("┌───┐┌───┐┌───┐┌───┐\n");
+		printw("│ %c ││ %c ││ %c ││ %c │\n", cards[i][0],cards[i][1],cards[i][2],cards[i][3]);
+		printw("└───┘└───┘└───┘└───┘\n");
+	}
 }
 
 
