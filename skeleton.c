@@ -52,9 +52,9 @@ void display() {
 void display_gameboard() {
 	for(int i=0; i<4; i++){
 		move(lines/2, cols/2);
-		printw("┌───┐┌───┐┌───┐┌───┐\n");
-		printw("│ %c ││ %c ││ %c ││ %c │\n", cards[i][0],cards[i][1],cards[i][2],cards[i][3]);
-		printw("└───┘└───┘└───┘└───┘\n");
+		printf("┌───┐┌───┐┌───┐┌───┐\n");
+		printf("│ %c ││ %c ││ %c ││ %c │\n", cards[i][0],cards[i][1],cards[i][2],cards[i][3]);
+		printf("└───┘└───┘└───┘└───┘\n");
 	}
 }
 
