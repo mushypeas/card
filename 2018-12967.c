@@ -31,7 +31,7 @@ int main() {
 			for(int j=0; j<4; j++)
 				cards[i][j] = 'A' + c++;
         fflush(stdout);
-		display();
+		display(screen);
 		key_in = getch();
 		if(screen){     //If in game
 			if(key_in == up){
@@ -98,7 +98,7 @@ void initialize() {
 	curs_set(0);
 	noecho();
 
-	display();
+	display(screen);
 }
 
 void display(int s) {
