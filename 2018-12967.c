@@ -104,9 +104,9 @@ void initialize() {
 void display(int s) {
 	clear();
 	if(s)
-		display_menu();
-	else
 		display_gameboard();
+	else
+		display_gamemenu();
 	refresh();
 }
 void display_menu(){
