@@ -1,9 +1,15 @@
 #include <ncurses.h>
 #include <stdlib.h>
 #include <stdio.h>
+#define down  258
+#define up    259
+#define left  260
+#define right 261
+
 int key_in;
 
 char cards[4][4];		// Cards
+int on[2] = {0,0};
 
 void initialize();
 void display();
@@ -22,7 +28,45 @@ int main() {
         fflush(stdout);
 		display();
 		key_in = getch();
-		if(key_in == 'Q' || key_in == 'q')
+		if(key_in == up){
+			if(on[0] == 0)
+				on[0] = 3;
+			else
+				on[0] -= 1;
+		}
+		else if(key_in == down){
+			if(on[0] == 3)
+				on[0] = 0;
+			else
+				on[0] += 1;
+		}
+		else if(key_in == left){
+			if(on[1] == 0)
+				on[1] = 3;
+			else
+				on[1] -= 1;
+		}
+		else if(key_in == right){
+			if(on[1] == 3)
+				on[1] = 0;
+			else
+				on[1] += 1;
+		}
+		else if(key_in == ' '){
+			if(on[0] == 3){
+				if(on[1] == 3)
+					on[0] = 0, on[1] = 0;
+				else
+					on[1] += 1;
+			}
+			else{
+				if(on[1] == 3)
+					on[0] += 1, on[1] = 0;
+				else
+					on[1] += 1;
+			}
+		}
+		else if(key_in == 'Q' || key_in == 'q')
 			break;
 	}
 
@@ -48,21 +92,27 @@ void display() {
 
 void display_gameboard() {
     mvprintw(0,0,"*Monospaced font recommended");
-    start_color();
-    init_pair(1, COLOR_BLACK, COLOR_WHITE);
-    attron(COLOR_PAIR(1));
 	for(int i=0;i<4;i++)
 		for(int j=0; j<4; j++){
             int y=LINES/2+(i-2)*3, x=COLS/2+(j-2)*5;
 			move(y,x);
-			addch(box_char(7)),addch(box_char(10)),addch(box_char(10)),addch(box_char(10)),addch(box_char(9)), move(y+1,x);
-			addch(box_char(11)),printw(" %c ", cards[i][j]),addch(box_char(11)), move(y+2,x);
-			addch(box_char(1)),addch(box_char(10)),addch(box_char(10)),addch(box_char(10)),addch(box_char(3));
+			if(on[0] == i && on[1] == j){
+			    start_color();
+			    init_color(8, 999, 999, 999);
+			    init_pair(1, COLOR_BLACK, 8);
+			    attron(COLOR_PAIR(1));
+				addch(box_char(7)),addch(box_char(10)),addch(box_char(10)),addch(box_char(10)),addch(box_char(9)), move(y+1,x);
+				addch(box_char(11)),printw(" %c ", cards[i][j]),addch(box_char(11)), move(y+2,x);
+				addch(box_char(1)),addch(box_char(10)),addch(box_char(10)),addch(box_char(10)),addch(box_char(3));
+				attroff(COLOR_PAIR(1));
+			}
+			else{
+				addch(box_char(7)),addch(box_char(10)),addch(box_char(10)),addch(box_char(10)),addch(box_char(9)), move(y+1,x);
+				addch(box_char(11)),printw(" %c ", cards[i][j]),addch(box_char(11)), move(y+2,x);
+				addch(box_char(1)),addch(box_char(10)),addch(box_char(10)),addch(box_char(10)),addch(box_char(3));
+			}
 		}
-	attroff(COLOR_PAIR(1));
 }
-
-
 // If you don't need this function, you can delete it. Also you can modify it as you want.
 int box_char(int x) {
 	switch(x) {
