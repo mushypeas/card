@@ -11,7 +11,7 @@ int key_in;
 char cards[4][4];		// Cards
 int on[2] = {0,0};      // The card the player is on
 int menu = 0;           // 0: game start 1: exit
-int screen = 0;         // 0: menu 1: game
+int status = 0;         // 0: menu 1: game
 
 void initialize();
 void display(int s);
@@ -31,9 +31,9 @@ int main() {
 			for(int j=0; j<4; j++)
 				cards[i][j] = 'A' + c++;
         fflush(stdout);
-		display(screen);
+		display(status);
 		key_in = getch();
-		if(screen){     //If in game
+		if(status){     //If in game
 			if(key_in == up){
 				if(on[0] == 0)
 					on[0] = 3;
@@ -82,8 +82,12 @@ int main() {
 				menu=1;
 			else if(key_in == ' ')
 				menu?(menu=0):(menu=1);
-			else if(key_in == 'Q' || key_in == 'q')
-				break;
+			else if(key_in == '\n'){
+				if(menu)
+					break
+				else
+					status = 1;
+			}
 		}
 	}
 
@@ -98,7 +102,7 @@ void initialize() {
 	curs_set(0);
 	noecho();
 
-	display(screen);
+	display(status);
 }
 
 void display(int s) {
@@ -116,36 +120,20 @@ void display_menu(){
     printw("MENU");
     x = COLS/2 - 10;
     if(menu){
-		addch(box_char(7));
-		for(int i=0;i<20;i++)addch(box_char(10));
-		addch(box_char(9)), move(y+1,x);
+		addch(box_char(7)),printw("                    "),addch(box_char(9)), move(y+1,x);
 		addch(box_char(11)),printw("     GAME START     "),addch(box_char(11)), move(y+2,x);
-		addch(box_char(1));
-		for(int i=0;i<20;i++)addch(box_char(10));
-		addch(box_char(3)), move(y+3,x);
-		addch(box_char(7));
-		for(int i=0;i<20;i++)addch(box_char(10));
-		addch(box_char(9)), move(y+4,x);
-		attron(COLOR_PAIR(1)),addch(box_char(11)),printw(" ->     EXIT        "),addch(box_char(11)),attroff(COLOR_PAIR(1)), move(y+5,x);
-		addch(box_char(1));
-		for(int i=0;i<20;i++)addch(box_char(10));
-		addch(box_char(3));
+		addch(box_char(1)),printw("                    "),addch(box_char(3)), move(y+3,x);
+		addch(box_char(7)),printw("                    "),addch(box_char(9)), move(y+4,x);
+		addch(box_char(11)),attron(COLOR_PAIR(1)),printw(" ->     EXIT        "),attroff(COLOR_PAIR(1)),addch(box_char(11)), move(y+5,x);
+		addch(box_char(1)),printw("                    "),addch(box_char(3));
 	}
     else{
-		addch(box_char(7));
-		for(int i=0;i<20;i++)addch(box_char(10));
-		addch(box_char(9)), move(y+1,x);
-		attron(COLOR_PAIR(1)),addch(box_char(11)),printw(" ->  GAME START     "),addch(box_char(11)),attroff(COLOR_PAIR(1)), move(y+2,x);
-		addch(box_char(1));
-		for(int i=0;i<20;i++)addch(box_char(10));
-		addch(box_char(3)), move(y+3,x);
-		addch(box_char(7));
-		for(int i=0;i<20;i++)addch(box_char(10));
-		addch(box_char(9)), move(y+4,x);
-		addch(box_char(11)),printw("        EXIT        "),addch(box_char(11)), move(y+5,x);
-		addch(box_char(1));
-		for(int i=0;i<20;i++)addch(box_char(10));
-		addch(box_char(3));
+		addch(box_char(7)),printw("                    "),addch(box_char(9)), move(y+1,x);
+		addch(box_char(11)),attron(COLOR_PAIR(1)),printw(" ->  GAME START     "),attroff(COLOR_PAIR(1)),addch(box_char(11)), move(y+2,x);
+		addch(box_char(1)),printw("                    "),addch(box_char(3)), move(y+3,x);
+		addch(box_char(7)),printw("                    "),addch(box_char(9)), move(y+4,x);
+		addch(box_char(11)),printw("      EXIT        "),addch(box_char(11)), move(y+5,x);
+		addch(box_char(1)),printw("                    "),addch(box_char(3));
 	}
 	return;
 }
