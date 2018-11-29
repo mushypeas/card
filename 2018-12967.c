@@ -115,7 +115,7 @@ void display(int s) {
 }
 void display_menu(){
     mvprintw(0,0,"*Monospaced font recommended");
-    int y = LINES/2 - 2, x = COLS/2 - 2;
+    int y = LINES/2 - 2, x = COLS/2-1;
     move(y-2, x);
     printw("MENU");
     x = COLS/2 - 10;
@@ -125,7 +125,7 @@ void display_menu(){
 		addch(box_char(11)),printw("     GAME START     "),addch(box_char(11)), move(y+2,x);
 		addch(box_char(1)),printw("                    "),addch(box_char(3)), move(y+3,x);
 		addch(box_char(7)),printw("                    "),addch(box_char(9)), move(y+4,x);
-		addch(box_char(11)),attron(COLOR_PAIR(1)),printw(" ->     EXIT        "),attroff(COLOR_PAIR(1)),addch(box_char(11)), move(y+5,x);
+		addch(box_char(11)),attron(COLOR_PAIR(1)),printw(" ->     EXIT       %c",' '),attroff(COLOR_PAIR(1)),addch(box_char(11)), move(y+5,x);
 		addch(box_char(1)),printw("                    "),addch(box_char(3));
 	}
     else{
