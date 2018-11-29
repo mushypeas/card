@@ -48,6 +48,9 @@ void display() {
 
 void display_gameboard() {
     mvprintw(0,0,"*Monospaced font recommended");
+    start_color();
+    init_pair(1, COLOR_BLACK, COLOR_WHITE);
+    attron(COLOR_PAIR(1));
 	for(int i=0;i<4;i++)
 		for(int j=0; j<4; j++){
             int y=LINES/2+(i-2)*3, x=COLS/2+(j-2)*5;
@@ -56,6 +59,7 @@ void display_gameboard() {
 			addch(box_char(11)),printw(" %c ", cards[i][j]),addch(box_char(11)), move(y+2,x);
 			addch(box_char(1)),addch(box_char(10)),addch(box_char(10)),addch(box_char(10)),addch(box_char(3));
 		}
+	attroff(COLOR_PAIR(1));
 }
 
 
