@@ -30,7 +30,6 @@ int main() {
 		for(int i=0; i<4; i++)
 			for(int j=0; j<4; j++)
 				cards[i][j] = 'A' + c++;
-        fflush(stdout);
 		display(status);
 		key_in = getch();
 		if(status){     //If in game
@@ -116,6 +115,8 @@ void display(int s) {
 void display_menu(){
     mvprintw(0,0,"*Monospaced font recommended");
     int y = LINES/2 - 2, x = COLS/2-1;
+    move(y-4, x-3);
+    printw("Card Match");
     move(y-2, x);
     printw("MENU");
     x = COLS/2 - 10;
