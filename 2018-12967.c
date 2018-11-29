@@ -119,6 +119,7 @@ void display_menu(){
     move(y-2, x);
     printw("MENU");
     x = COLS/2 - 10;
+    move(y, x);
     if(menu){
 		addch(box_char(7)),printw("                    "),addch(box_char(9)), move(y+1,x);
 		addch(box_char(11)),printw("     GAME START     "),addch(box_char(11)), move(y+2,x);
@@ -132,7 +133,7 @@ void display_menu(){
 		addch(box_char(11)),attron(COLOR_PAIR(1)),printw(" ->  GAME START     "),attroff(COLOR_PAIR(1)),addch(box_char(11)), move(y+2,x);
 		addch(box_char(1)),printw("                    "),addch(box_char(3)), move(y+3,x);
 		addch(box_char(7)),printw("                    "),addch(box_char(9)), move(y+4,x);
-		addch(box_char(11)),printw("      EXIT        "),addch(box_char(11)), move(y+5,x);
+		addch(box_char(11)),printw("        EXIT        "),addch(box_char(11)), move(y+5,x);
 		addch(box_char(1)),printw("                    "),addch(box_char(3));
 	}
 	return;
