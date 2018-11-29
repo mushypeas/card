@@ -106,7 +106,7 @@ void display(int s) {
 	if(s)
 		display_gameboard();
 	else
-		display_gamemenu();
+		display_menu();
 	refresh();
 }
 void display_menu(){
