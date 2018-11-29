@@ -81,7 +81,7 @@ int main() {
 			else if(key_in == down)
 				menu=1;
 			else if(key_in == ' ')
-				menu?menu=0:menu=1;
+				menu?(menu=0):(menu=1);
 			else if(key_in == 'Q' || key_in == 'q')
 				break;
 		}
