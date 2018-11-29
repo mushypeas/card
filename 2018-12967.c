@@ -84,7 +84,7 @@ int main() {
 				menu?(menu=0):(menu=1);
 			else if(key_in == '\n'){
 				if(menu)
-					break
+					break;
 				else
 					status = 1;
 			}
