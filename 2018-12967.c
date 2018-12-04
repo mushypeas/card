@@ -7,10 +7,9 @@
 #define up    259
 #define left  260
 #define right 261
-#define SIZE  2
 
 int key_in;
-
+int SIZE = 4;
 typedef struct{
 	char name;
 	int status;         // 0: Hidden 1: Picked 2: Shown&same 3: Shown&different -1: Removed
@@ -142,6 +141,10 @@ int main() {
 					break;
 				else{
 					status = 1;
+					clear();
+					mvprintw(LINES/2-2,COLS/2-12,"ENTER SIZE OF BOARD (1<N<8)");
+					move(LINES/2,COLS/2);
+					SIZE = getch();
 					initialize();
 				}
 			}
