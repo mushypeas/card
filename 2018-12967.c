@@ -63,18 +63,28 @@ int main() {
 				}
 			if(flip_count == 2){
 				if(flip_name[0] == flip_name[1]){
-					sleep(1);
 					for(int i=0; i<SIZE; i++)
 						for(int j=0; j<SIZE; j++)
 							if(cards[i][j].status == 1)
-								cards[i][j].status = -1;
+								cards[i][j].status = 2;
+					display(status);
+					sleep(1);
+				for(int i=0; i<SIZE; i++)
+					for(int j=0; j<SIZE; j++)
+						if(cards[i][j].status == 2)
+							cards[i][j].status = -1;
 				}
 				else{
-					sleep(1);
 					for(int i=0; i<SIZE; i++)
 						for(int j=0; j<SIZE; j++)
 							if(cards[i][j].status == 1)
-								cards[i][j].status = 0;
+								cards[i][j].status = 3;
+					display(status);
+					sleep(1);
+				for(int i=0; i<SIZE; i++)
+					for(int j=0; j<SIZE; j++)
+						if(cards[i][j].status == 3)
+							cards[i][j].status = 0;
 				}
 			}
 			if(end){
