@@ -7,7 +7,7 @@
 #define up    259
 #define left  260
 #define right 261
-#define SIZE  4
+#define SIZE  2
 
 int key_in;
 
@@ -27,6 +27,7 @@ int menu = 0;           // 0: game start 1: exit
 int status = 0;         // 0: menu 1: game 2: pause
 int end = 0;
 int turn = 0;
+int record = -1;
 
 void initialize();
 void display(int s);
@@ -90,7 +91,11 @@ int main() {
 				clear();
 				mvprintw(LINES/2,COLS/2-6,"YOU'RE WINNER!");
 				mvprintw(LINES/2+1,COLS/2-12,"You finished it in %d turns", turn);
-				mvprintw(LINES/2+2,COLS/2-15,"Press Enter to return to menu...");
+				if(record<0 || turn<record){
+					record = turn;
+					mvprintw(LINES/2+1,COLS/2-9,"It's a new record!");
+				}
+				mvprintw(LINES/2+3,COLS/2-15,"Press Enter to return to menu...");
 				char endit='\0';
 				while(endit != '\n')
 					endit = getch();
@@ -236,6 +241,11 @@ void display_menu(){
 		addch(box_char(11)),printw("        QUIT        "),addch(box_char(11)), move(y+5,x);
 		addch(box_char(1)),printw("                    "),addch(box_char(3));
 	}
+	if(record<0)
+		mvprintw(y+7, x-5,"High Score: --");
+	else
+		mvprintw(y+7, x-5,"High Score: %d",record);
+
 	return;
 }
 void card_box(card cards,int y,int x){
