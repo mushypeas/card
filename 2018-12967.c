@@ -88,8 +88,8 @@ int main() {
 			}
 			if(end){
 				clear();
-				mvprintw(LINES/2,COLS/2-6,"YOU'RE WINNER");
-				mvprintw(LINES/2+1,COLS/2-6,"Turns used: %d", turn);
+				mvprintw(LINES/2,COLS/2-6,"YOU'RE WINNER!");
+				mvprintw(LINES/2+1,COLS/2-12,"You finished it in %d turns", turn);
 				mvprintw(LINES/2+2,COLS/2-15,"Press Enter to return to menu...");
 				char endit='\0';
 				while(endit != '\n')
