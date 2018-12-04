@@ -58,7 +58,8 @@ int main() {
 							cards[i][j].status = 0;
 			}
 			flip_count=0;
-			flip_name[2] = {'\0', '\0'};
+			flip_name[0] = '\0';
+			flip_name[1] = '\0';
 		}
 		display(status);
 		key_in = getch();
