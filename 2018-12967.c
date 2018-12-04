@@ -20,7 +20,6 @@ typedef struct{
 	int num;
 }pick;
 
-card cards[SIZE][SIZE];		// Cards
 int on[2] = {0,0};      // The card the player is on
 int menu = 0;           // 0: game start 1: exit
 int status = 0;         // 0: menu 1: game 2: pause
@@ -35,6 +34,10 @@ int box_char(int x);
 void card_box();
 
 int main() {
+	mvprintw(LINES/2-2,COLS/2-12,"ENTER SIZE OF BOARD (1<N<8)");
+	move(LINES/2,COLS/2);
+	SIZE = getch();
+	global card cards[SIZE][SIZE];		// Cards
 	initialize();
     start_color();
     init_color(8, 999, 999, 999);
@@ -141,10 +144,6 @@ int main() {
 					break;
 				else{
 					status = 1;
-					clear();
-					mvprintw(LINES/2-2,COLS/2-12,"ENTER SIZE OF BOARD (1<N<8)");
-					move(LINES/2,COLS/2);
-					SIZE = getch();
 					initialize();
 				}
 			}
@@ -211,8 +210,8 @@ void display(int s) {
 void display_menu(){
     mvprintw(0,0,"*Monospaced font recommended");
     int y = LINES/2 - 2, x = COLS/2-1;
-    move(y-4, x-3);
-    printw("Card Match");
+    move(y-4, x-5);
+    printw("Card Match %d x %d", SIZE, SIZE);
     move(y-2, x);
     printw("MENU");
     x = COLS/2 - 10;
