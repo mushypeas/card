@@ -8,7 +8,16 @@
 
 int key_in;
 
-char cards[4][4];		// Cards
+typedef struct{
+	char name = '\0';
+	int status = 0;         // 0: Hidden 1: Shown 2: Removed
+}card;
+typedef struct{
+	char name;
+	int num = 2;
+}pick;
+
+card cards[4][4];		// Cards
 int on[2] = {0,0};      // The card the player is on
 int menu = 0;           // 0: game start 1: exit
 int status = 0;         // 0: menu 1: game
@@ -25,11 +34,22 @@ int main() {
     start_color();
     init_color(8, 999, 999, 999);
     init_pair(1, COLOR_BLACK, 8);
+	srand(time(NULL));
+	pick list[8];
+	for(int i=0; i<8; i++){
+		list[i].name = 'A' + rand()%27;
+	}
+	for(int i=0; i<4; i++)
+		for(int j=0; j<4; j++){
+			while(cards[i][j].name == '\0'){
+				int mere = rand()%8;
+				if(list[mere].num > 0){
+					cards[i][j].name = list[mere].name;
+					list[mere].num--;
+				}
+			}
+		}
 	while(1) {
-		int c = 0;
-		for(int i=0; i<4; i++)
-			for(int j=0; j<4; j++)
-				cards[i][j] = 'A' + c++;
 		display(status);
 		key_in = getch();
 		if(status){     //If in game
@@ -148,13 +168,13 @@ void display_gameboard() {
 			if(on[0] == i && on[1] == j){
 			    attron(COLOR_PAIR(1));
 				addch(box_char(7)),addch(box_char(10)),addch(box_char(10)),addch(box_char(10)),addch(box_char(9)), move(y+1,x);
-				addch(box_char(11)),printw(" %c ", cards[i][j]),addch(box_char(11)), move(y+2,x);
+				addch(box_char(11)),printw(" %c ", cards[i][j].name),addch(box_char(11)), move(y+2,x);
 				addch(box_char(1)),addch(box_char(10)),addch(box_char(10)),addch(box_char(10)),addch(box_char(3));
 				attroff(COLOR_PAIR(1));
 			}
 			else{
 				addch(box_char(7)),addch(box_char(10)),addch(box_char(10)),addch(box_char(10)),addch(box_char(9)), move(y+1,x);
-				addch(box_char(11)),printw(" %c ", cards[i][j]),addch(box_char(11)), move(y+2,x);
+				addch(box_char(11)),printw(" %c ", cards[i][j].name),addch(box_char(11)), move(y+2,x);
 				addch(box_char(1)),addch(box_char(10)),addch(box_char(10)),addch(box_char(10)),addch(box_char(3));
 			}
 		}
