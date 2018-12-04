@@ -244,7 +244,7 @@ void display_menu(){
 	if(record<0)
 		mvprintw(y+7, x+4,"High Score: --");
 	else
-		mvprintw(y+7, x+4,"High Score: %d",record);
+		mvprintw(y+7, x+2,"High Score: %d turns",record);
 
 	return;
 }
