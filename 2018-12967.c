@@ -24,6 +24,7 @@ card cards[4][4];		// Cards
 int on[2] = {0,0};      // The card the player is on
 int menu = 0;           // 0: game start 1: exit
 int status = 0;         // 0: menu 1: game
+int end = 0;
 
 void initialize();
 void display(int s);
@@ -39,13 +40,17 @@ int main() {
     init_color(8, 999, 999, 999);
     init_pair(1, COLOR_BLACK, 8);
 	while(1) {
+		end = 1;
 		display(status);
 		int flip_count=0;
 		char flip_name[2] = {'\0', '\0'};
 		for(int i=0; i<4; i++)
-			for(int j=0; j<4; j++)
+			for(int j=0; j<4; j++){
 				if(cards[i][j].status == 1)
 					flip_name[flip_count++] = cards[i][j].name;
+				else if(cards[i][j].status != -1)
+					end = 0;
+			}
 		if(flip_count == 2){
 			if(flip_name[0] == flip_name[1]){
 				sleep(1);
@@ -61,8 +66,12 @@ int main() {
 						if(cards[i][j].status == 1)
 							cards[i][j].status = 0;
 			}
-			display(status);
 		}
+		if(end){
+			printf("WIN");
+			return 0;
+		}
+		display(status);
 		key_in = getch();
 		if(status){     //If in game
 			if(key_in == up){
