@@ -65,6 +65,7 @@ int main() {
 							if(cards[i][j].status == 1)
 								cards[i][j].status = 0;
 				}
+				display(status);
 			}
 			if(key_in == up){
 				if(on[0] == 0)
