@@ -112,8 +112,10 @@ int main() {
 			else if(key_in == ' '){
 				if(menu)
 					break;
-				else
+				else{
+					initialize();
 					status = 1;
+				}
 			}
 		}
 	}
