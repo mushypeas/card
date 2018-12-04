@@ -69,7 +69,7 @@ int main() {
 		}
 		if(end){
 			move(0,0);
-			_=system("clear");
+			system("clear");
 			printf("WIN\n");
 			break;
 		}
