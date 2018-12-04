@@ -69,9 +69,11 @@ int main() {
 			}
 		}
 		if(end){
-			system("clear");
+			clear();
 			mvprintw(LINES/2,COLS/2,"YOU'RE WINNER");
-			getch();
+			mvprintw(LINES/2+1,COLS/2,"Press any key to return to menu...");
+			while(char endit != '\n')
+				endit = getch();
 			status = 0;
 		}
 		display(status);
