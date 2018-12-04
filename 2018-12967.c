@@ -104,7 +104,7 @@ int main() {
 					on[1] += 1;
 			}
 			else if(key_in == 'Q' || key_in == 'q')
-				status = 0;
+				status = 2;
 			else if(key_in == ' ')
 				if(cards[on[0]][on[1]].status == 0)
 					cards[on[0]][on[1]].status = 1;
