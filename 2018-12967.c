@@ -42,7 +42,7 @@ int main() {
     init_color(1, 999, 300, 300);
     init_color(2, 300, 999, 300);
     init_color(3, 300, 300, 999);
-    init_pair(0, COLOR_BLACK, 8);
+    init_pair(4, COLOR_BLACK, 8);
     init_pair(1, COLOR_BLACK, 1);
     init_pair(2, COLOR_BLACK, 2);
     init_pair(3, COLOR_BLACK, 3);
@@ -209,12 +209,12 @@ void display_menu(){
 		addch(box_char(11)),printw("     GAME START     "),addch(box_char(11)), move(y+2,x);
 		addch(box_char(1)),printw("                    "),addch(box_char(3)), move(y+3,x);
 		addch(box_char(7)),printw("                    "),addch(box_char(9)), move(y+4,x);
-		addch(box_char(11)),attron(COLOR_PAIR(0)),printw(" -      QUIT      - "),attroff(COLOR_PAIR(0)),addch(box_char(11)), move(y+5,x);
+		addch(box_char(11)),attron(COLOR_PAIR(4)),printw(" -      QUIT      - "),attroff(COLOR_PAIR(4)),addch(box_char(11)), move(y+5,x);
 		addch(box_char(1)),printw("                    "),addch(box_char(3));
 	}
     else{
 		addch(box_char(7)),printw("                    "),addch(box_char(9)), move(y+1,x);
-		addch(box_char(11)),attron(COLOR_PAIR(0)),printw(" -   GAME START   - "),attroff(COLOR_PAIR(0)),addch(box_char(11)), move(y+2,x);
+		addch(box_char(11)),attron(COLOR_PAIR(4)),printw(" -   GAME START   - "),attroff(COLOR_PAIR(4)),addch(box_char(11)), move(y+2,x);
 		addch(box_char(1)),printw("                    "),addch(box_char(3)), move(y+3,x);
 		addch(box_char(7)),printw("                    "),addch(box_char(9)), move(y+4,x);
 		addch(box_char(11)),printw("        QUIT        "),addch(box_char(11)), move(y+5,x);
@@ -233,14 +233,14 @@ void card_box(card cards,int y,int x){
 	if(cards.status == 2){
 		attron(COLOR_PAIR(2));
 		addch(box_char(7)),addch(box_char(10)),addch(box_char(10)),addch(box_char(10)),addch(box_char(9)), move(y+1,x);
-		addch(box_char(11)),printw("   "),addch(box_char(11)), move(y+2,x);
+		addch(box_char(11)),printw(" %c ",cards.name),addch(box_char(11)), move(y+2,x);
 		addch(box_char(1)),addch(box_char(10)),addch(box_char(10)),addch(box_char(10)),addch(box_char(3));
 		attroff(COLOR_PAIR(2));
 	}
 	if(cards.status == 1){
 		attron(COLOR_PAIR(3));
 		addch(box_char(7)),addch(box_char(10)),addch(box_char(10)),addch(box_char(10)),addch(box_char(9)), move(y+1,x);
-		addch(box_char(11)),printw("   "),addch(box_char(11)), move(y+2,x);
+		addch(box_char(11)),printw(" %c ",cards.name),addch(box_char(11)), move(y+2,x);
 		addch(box_char(1)),addch(box_char(10)),addch(box_char(10)),addch(box_char(10)),addch(box_char(3));
 		attroff(COLOR_PAIR(3));
 	}
@@ -263,9 +263,9 @@ void display_gameboard() {
             int y=LINES/2+(i-2)*3, x=COLS/2+(j-2)*5;
 			move(y,x);
 			if(on[0] == i && on[1] == j){
-			    attron(COLOR_PAIR(0));
+			    attron(COLOR_PAIR(4));
 			    card_box(cards[i][j],y,x);
-			    attroff(COLOR_PAIR(0));
+			    attroff(COLOR_PAIR(4));
 			}
 			else{
 				card_box(cards[i][j],y,x);
