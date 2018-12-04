@@ -40,7 +40,7 @@ int main() {
     init_pair(1, COLOR_BLACK, 8);
 	srand(time(NULL));
 	while(1) {
-		display(status), fflush(stdout);
+		display(status);
 		key_in = getch();
 		if(status){     //If in game
 			int flip_count=0;
