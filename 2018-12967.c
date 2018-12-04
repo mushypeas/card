@@ -40,11 +40,12 @@ int main() {
 	pick list[8];
 	for(int i=0; i<8; i++){
 		list[i].num = 2;
-		list[i].name = 'A' + rand()%27;
+		list[i].name = 'A' + i;
 	}
 	for(int i=0; i<4; i++)
 		for(int j=0; j<4; j++){
 			cards[i][j].name = '\0';
+			cards[i][j].status = 0;
 			while(cards[i][j].name == '\0'){
 				int mere = rand()%8;
 				if(list[mere].num > 0){
