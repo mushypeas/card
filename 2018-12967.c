@@ -73,7 +73,8 @@ int main() {
 				clear();
 				mvprintw(LINES/2,COLS/2,"YOU'RE WINNER");
 				mvprintw(LINES/2+1,COLS/2,"Press any key to return to menu...");
-				while(char endit != '\n')
+				char endit='\0';
+				while(endit != '\n')
 					endit = getch();
 				status = 0;
 			}
