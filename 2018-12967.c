@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
+#include <unistd.h>
 #define down  258
 #define up    259
 #define left  260
@@ -42,6 +43,28 @@ int main() {
 		display(status);
 		key_in = getch();
 		if(status){     //If in game
+			int flip_count=0;
+			char flip_name[2] = {'\0', '\0'};
+			for(int i=0; i<4; i++)
+				for(int j=0; j<4; j++)
+					if(cards[i][j].status == 1)
+						flip_count++, flip_name[flip_count] = cards[i][j].name;
+			if(flip_count == 2){
+				if(flip_name[0] == flip_name[1]){
+					sleep(2);
+					for(int i=0; i<4; i++)
+						for(int j=0; j<4; j++)
+							if(cards[i][j].status == 1)
+								cards[i][j].status = -1;
+				}
+				else{
+					sleep(2);
+					for(int i=0; i<4; i++)
+						for(int j=0; j<4; j++)
+							if(cards[i][j].status == 1)
+								cards[i][j].status = 0;
+				}
+			}
 			if(key_in == up){
 				if(on[0] == 0)
 					on[0] = 3;
@@ -68,9 +91,9 @@ int main() {
 			}
 			else if(key_in == 'Q' || key_in == 'q')
 				status = 0;
-			else if(key_in == ' '){
-				cards[on[0]][on[1]].status = 1;
-			}
+			else if(key_in == ' ')
+				if(cards[on[0]][on[1]].status == 0)
+					cards[on[0]][on[1]].status = 1;
 		}
 		else{          //If in menu
 			if(key_in == up)
