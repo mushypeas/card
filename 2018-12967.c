@@ -71,8 +71,7 @@ int main() {
 		if(end){
 			system("clear");
 			mvprintw(LINES/2,COLS/2,"YOU'RE WINNER");
-			char * endit;
-			scanf("%[\n]", endit);
+			getch();
 			status = 0;
 		}
 		display(status);
