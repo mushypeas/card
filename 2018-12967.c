@@ -26,6 +26,7 @@ int on[2] = {0,0};      // The card the player is on
 int menu = 0;           // 0: game start 1: exit
 int status = 0;         // 0: menu 1: game 2: pause
 int end = 0;
+int turn = 0;
 
 void initialize();
 void display(int s);
@@ -122,11 +123,13 @@ int main() {
 				}
 				else if(key_in == 'Q' || key_in == 'q')
 					status = 2;
-				else if(key_in == ' ')
+				else if(key_in == ' '){
+					turn++;
 					if(cards[on[0]][on[1]].status == 0)
 						cards[on[0]][on[1]].status = 1;
 					else if(cards[on[0]][on[1]].status == 1)
 						cards[on[0]][on[1]].status = 0;
+				}
 			}
 		}
 		else if(status == 0){          //If in menu
@@ -174,6 +177,7 @@ void initialize() {
 		list[i].num = 2;
 		list[i].name = 'A' + i;
 	}
+	turn = 0;
 	srand(time(NULL));
 	for(int i=0; i<SIZE; i++)
 		for(int j=0; j<SIZE; j++){
@@ -267,6 +271,7 @@ void card_box(card cards,int y,int x){
 }
 void display_gameboard() {
     mvprintw(0,0,"*Monospaced font recommended");
+    mvprintw(4,COLS/2-3,"Turn %d",turn);
 	for(int i=0;i<SIZE;i++)
 		for(int j=0; j<SIZE; j++){
             int y=LINES/2+(i-2)*3, x=COLS/2+(j-2)*5;
