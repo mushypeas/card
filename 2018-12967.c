@@ -287,7 +287,7 @@ void display_gameboard() {
     mvprintw(4,COLS/2-3,"Turn %d",turn);
 	for(int i=0;i<SIZE;i++)
 		for(int j=0; j<SIZE; j++){
-            int y=LINES/2+(i-2)*3, x=COLS/2+(j-2)*5;
+            int y=LINES/2+(i-SIZE/2)*3, x=COLS/2+(j-SIZE/2)*5;
 			move(y,x);
 			if(on[0] == i && on[1] == j){
 			    attron(COLOR_PAIR(4));
