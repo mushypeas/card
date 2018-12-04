@@ -40,32 +40,32 @@ int main() {
     init_pair(1, COLOR_BLACK, 8);
 	srand(time(NULL));
 	while(1) {
-		int flip_count=0;
 		display(status);
+		int flip_count=0;
+		char flip_name[2] = {'\0', '\0'};
+		for(int i=0; i<4; i++)
+			for(int j=0; j<4; j++)
+				if(cards[i][j].status == 1)
+					flip_name[flip_count++] = cards[i][j].name;
+		if(flip_count == 2){
+			if(flip_name[0] == flip_name[1]){
+				sleep(1);
+				for(int i=0; i<4; i++)
+					for(int j=0; j<4; j++)
+						if(cards[i][j].status == 1)
+							cards[i][j].status = -1;
+			}
+			else{
+				sleep(1);
+				for(int i=0; i<4; i++)
+					for(int j=0; j<4; j++)
+						if(cards[i][j].status == 1)
+							cards[i][j].status = 0;
+			}
+			display(status);
+		}
 		key_in = getch();
 		if(status){     //If in game
-			char flip_name[2] = {'\0', '\0'};
-			for(int i=0; i<4; i++)
-				for(int j=0; j<4; j++)
-					if(cards[i][j].status == 1)
-						flip_name[flip_count++] = cards[i][j].name;
-			if(flip_count == 2){
-				if(flip_name[0] == flip_name[1]){
-					sleep(1);
-					for(int i=0; i<4; i++)
-						for(int j=0; j<4; j++)
-							if(cards[i][j].status == 1)
-								cards[i][j].status = -1;
-				}
-				else{
-					sleep(1);
-					for(int i=0; i<4; i++)
-						for(int j=0; j<4; j++)
-							if(cards[i][j].status == 1)
-								cards[i][j].status = 0;
-				}
-				display(status), fflush(stdout);
-			}
 			if(key_in == up){
 				if(on[0] == 0)
 					on[0] = 3;
