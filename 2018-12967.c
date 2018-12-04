@@ -81,24 +81,24 @@ int main() {
 			key_in = getch();
 			if(key_in == up){
 				if(on[0] == 0)
-					on[0] = 3;
+					on[0] = SIZE-1;
 				else
 					on[0] -= 1;
 			}
 			else if(key_in == down){
-				if(on[0] == 3)
+				if(on[0] == SIZE-1)
 					on[0] = 0;
 				else
 					on[0] += 1;
 			}
 			else if(key_in == left){
 				if(on[1] == 0)
-					on[1] = 3;
+					on[1] = SIZE-1;
 				else
 					on[1] -= 1;
 			}
 			else if(key_in == right){
-				if(on[1] == 3)
+				if(on[1] == SIZE-1)
 					on[1] = 0;
 				else
 					on[1] += 1;
@@ -142,12 +142,12 @@ void initialize() {
 		list[i].num = 2;
 		list[i].name = 'A' + i;
 	}
+	srand(time(NULL));
 	for(int i=0; i<SIZE; i++)
 		for(int j=0; j<SIZE; j++){
 			cards[i][j].name = '\0';
 			cards[i][j].status = 0;
 			while(cards[i][j].name == '\0'){
-				srand(time(NULL));
 				int mere = rand()%(SIZE*SIZE/2);
 				if(list[mere].num > 0){
 					cards[i][j].name = list[mere].name;
