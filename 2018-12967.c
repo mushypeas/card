@@ -29,7 +29,7 @@ void display(int s);
 void display_menu();
 void display_gameboard();
 int box_char(int x);
-void card_box(card cards, int y, int x);
+void card_box();
 
 int main() {	
 
@@ -148,7 +148,7 @@ void display_menu(){
 	}
 	return;
 }
-void card_box(cards[i][j],y,x){
+void card_box(card cards[i][j],int y,int x){
 	if(cards[i][j].status == 0){
 		addch(box_char(7)),addch(box_char(10)),addch(box_char(10)),addch(box_char(10)),addch(box_char(9)), move(y+1,x);
 		addch(box_char(11)),printw(" %c ", cards[i][j].name),addch(box_char(11)), move(y+2,x);
@@ -169,11 +169,11 @@ void display_gameboard() {
 			move(y,x);
 			if(on[0] == i && on[1] == j){
 			    attron(COLOR_PAIR(1));
-			    card_box(cards[i][j],y,x)
+			    card_box(cards[i][j],y,x);
 			    attroff(COLOR_PAIR(1));
 			}
 			else{
-				card_box(cards[i][j],y,x)
+				card_box(cards[i][j],y,x);
 			}
 		}
 }
