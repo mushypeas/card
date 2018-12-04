@@ -7,7 +7,7 @@
 #define up    259
 #define left  260
 #define right 261
-#define SIZE  6
+#define SIZE  4
 
 int key_in;
 
@@ -26,7 +26,6 @@ int on[2] = {0,0};      // The card the player is on
 int menu = 0;           // 0: game start 1: exit
 int status = 0;         // 0: menu 1: game 2: pause
 int end = 0;
-//int axis[4] = {0,0,0,0};
 
 void initialize();
 void display(int s);
@@ -54,10 +53,8 @@ int main() {
 			char flip_name[2] = {'\0', '\0'};
 			for(int i=0; i<SIZE; i++)
 				for(int j=0; j<SIZE; j++){
-					if(cards[i][j].status == 1){
-//						axis[flip_count] = i, axis[flip_count+2] = j;
+					if(cards[i][j].status == 1)
 						flip_name[flip_count++] = cards[i][j].name;
-					}
 					else if(cards[i][j].status != -1)
 						end = 0;
 				}
