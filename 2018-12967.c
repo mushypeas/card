@@ -7,7 +7,7 @@
 #define up    259
 #define left  260
 #define right 261
-#define SIZE  2
+#define SIZE  6
 
 int key_in;
 
@@ -96,39 +96,41 @@ int main() {
 					endit = getch();
 				status = 0;
 			}
-			display(status);
-			key_in = getch();
-			if(key_in == up){
-				if(on[0] == 0)
-					on[0] = SIZE-1;
-				else
-					on[0] -= 1;
+			else{
+				display(status);
+				key_in = getch();
+				if(key_in == up){
+					if(on[0] == 0)
+						on[0] = SIZE-1;
+					else
+						on[0] -= 1;
+				}
+				else if(key_in == down){
+					if(on[0] == SIZE-1)
+						on[0] = 0;
+					else
+						on[0] += 1;
+				}
+				else if(key_in == left){
+					if(on[1] == 0)
+						on[1] = SIZE-1;
+					else
+						on[1] -= 1;
+				}
+				else if(key_in == right){
+					if(on[1] == SIZE-1)
+						on[1] = 0;
+					else
+						on[1] += 1;
+				}
+				else if(key_in == 'Q' || key_in == 'q')
+					status = 2;
+				else if(key_in == ' ')
+					if(cards[on[0]][on[1]].status == 0)
+						cards[on[0]][on[1]].status = 1;
+					else if(cards[on[0]][on[1]].status == 1)
+						cards[on[0]][on[1]].status = 0;
 			}
-			else if(key_in == down){
-				if(on[0] == SIZE-1)
-					on[0] = 0;
-				else
-					on[0] += 1;
-			}
-			else if(key_in == left){
-				if(on[1] == 0)
-					on[1] = SIZE-1;
-				else
-					on[1] -= 1;
-			}
-			else if(key_in == right){
-				if(on[1] == SIZE-1)
-					on[1] = 0;
-				else
-					on[1] += 1;
-			}
-			else if(key_in == 'Q' || key_in == 'q')
-				status = 2;
-			else if(key_in == ' ')
-				if(cards[on[0]][on[1]].status == 0)
-					cards[on[0]][on[1]].status = 1;
-				else if(cards[on[0]][on[1]].status == 1)
-					cards[on[0]][on[1]].status = 0;
 		}
 		else if(status == 0){          //If in menu
 			display(status);
