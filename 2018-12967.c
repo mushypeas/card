@@ -93,7 +93,7 @@ int main() {
 				mvprintw(LINES/2+1,COLS/2-12,"You finished it in %d turns", turn);
 				if(record<0 || turn<record){
 					record = turn;
-					mvprintw(LINES/2+1,COLS/2-9,"It's a new record!");
+					mvprintw(LINES/2+2,COLS/2-9,"It's a new record!");
 				}
 				mvprintw(LINES/2+3,COLS/2-15,"Press Enter to return to menu...");
 				char endit='\0';
@@ -242,9 +242,9 @@ void display_menu(){
 		addch(box_char(1)),printw("                    "),addch(box_char(3));
 	}
 	if(record<0)
-		mvprintw(y+7, x-5,"High Score: --");
+		mvprintw(y+7, x+3,"High Score: --");
 	else
-		mvprintw(y+7, x-5,"High Score: %d",record);
+		mvprintw(y+7, x+3,"High Score: %d",record);
 
 	return;
 }
