@@ -34,8 +34,7 @@ void display_gameboard();
 int box_char(int x);
 void card_box();
 
-int main() {	
-	srand(time(NULL));
+int main() {
 	initialize();
     start_color();
     init_color(8, 999, 999, 999);
@@ -148,6 +147,7 @@ void initialize() {
 			cards[i][j].name = '\0';
 			cards[i][j].status = 0;
 			while(cards[i][j].name == '\0'){
+				srand(time(NULL));
 				int mere = rand()%(SIZE*SIZE/2);
 				if(list[mere].num > 0){
 					cards[i][j].name = list[mere].name;
