@@ -68,10 +68,11 @@ int main() {
 			}
 		}
 		if(end){
-			move(0,0);
+			move(LINES/2,COLS/2);
 			system("clear");
-			printf("WIN\n");
+			printw("WIN\n");
 			scanf("%d", &menu);
+			status = 0;
 			break;
 		}
 		display(status);
