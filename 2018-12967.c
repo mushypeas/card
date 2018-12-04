@@ -1,6 +1,7 @@
 #include <ncurses.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <time.h>
 #define down  258
 #define up    259
 #define left  260
@@ -9,12 +10,13 @@
 int key_in;
 
 typedef struct{
-	char name = '\0';
-	int status = 0;         // 0: Hidden 1: Shown 2: Removed
+	char name;
+	int status;         // 0: Hidden 1: Shown 2: Removed
 }card;
+
 typedef struct{
 	char name;
-	int num = 2;
+	int num;
 }pick;
 
 card cards[4][4];		// Cards
@@ -37,10 +39,12 @@ int main() {
 	srand(time(NULL));
 	pick list[8];
 	for(int i=0; i<8; i++){
+		list[i].num = 2;
 		list[i].name = 'A' + rand()%27;
 	}
 	for(int i=0; i<4; i++)
 		for(int j=0; j<4; j++){
+			cards[i][j].name = '\0';
 			while(cards[i][j].name == '\0'){
 				int mere = rand()%8;
 				if(list[mere].num > 0){
