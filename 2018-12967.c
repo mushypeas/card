@@ -7,6 +7,7 @@
 #define up    259
 #define left  260
 #define right 261
+#define SIZE  2
 
 int key_in;
 
@@ -20,7 +21,7 @@ typedef struct{
 	int num;
 }pick;
 
-card cards[4][4];		// Cards
+card cards[SIZE][SIZE];		// Cards
 int on[2] = {0,0};      // The card the player is on
 int menu = 0;           // 0: game start 1: exit
 int status = 0;         // 0: menu 1: game
@@ -44,8 +45,8 @@ int main() {
 		display(status);
 		int flip_count=0;
 		char flip_name[2] = {'\0', '\0'};
-		for(int i=0; i<4; i++)
-			for(int j=0; j<4; j++){
+		for(int i=0; i<SIZE; i++)
+			for(int j=0; j<SIZE; j++){
 				if(cards[i][j].status == 1)
 					flip_name[flip_count++] = cards[i][j].name;
 				else if(cards[i][j].status != -1)
@@ -54,23 +55,22 @@ int main() {
 		if(flip_count == 2){
 			if(flip_name[0] == flip_name[1]){
 				sleep(1);
-				for(int i=0; i<4; i++)
-					for(int j=0; j<4; j++)
+				for(int i=0; i<SIZE; i++)
+					for(int j=0; j<SIZE; j++)
 						if(cards[i][j].status == 1)
 							cards[i][j].status = -1;
 			}
 			else{
 				sleep(1);
-				for(int i=0; i<4; i++)
-					for(int j=0; j<4; j++)
+				for(int i=0; i<SIZE; i++)
+					for(int j=0; j<SIZE; j++)
 						if(cards[i][j].status == 1)
 							cards[i][j].status = 0;
 			}
 		}
 		if(end){
-			move(LINES/2,COLS/2);
 			system("clear");
-			printw("YOU'RE WINNER\n");
+			mvprintw(LINES/2,COLS/2,"YOU'RE WINNER");
 			char * endit;
 			scanf("%[\n]", endit);
 			status = 0;
@@ -134,17 +134,17 @@ void initialize() {
 	keypad(stdscr, TRUE);
 	curs_set(0);
 	noecho();
-	pick list[8];
-	for(int i=0; i<8; i++){
+	pick list[SIZE*SIZE/2];
+	for(int i=0; i<SIZE*SIZE/2; i++){
 		list[i].num = 2;
 		list[i].name = 'A' + i;
 	}
-	for(int i=0; i<4; i++)
-		for(int j=0; j<4; j++){
+	for(int i=0; i<SIZE; i++)
+		for(int j=0; j<SIZE; j++){
 			cards[i][j].name = '\0';
 			cards[i][j].status = 0;
 			while(cards[i][j].name == '\0'){
-				int mere = rand()%8;
+				int mere = rand()%(SIZE*SIZE/2);
 				if(list[mere].num > 0){
 					cards[i][j].name = list[mere].name;
 					list[mere].num--;
@@ -209,8 +209,8 @@ void card_box(card cards,int y,int x){
 }
 void display_gameboard() {
     mvprintw(0,0,"*Monospaced font recommended");
-	for(int i=0;i<4;i++)
-		for(int j=0; j<4; j++){
+	for(int i=0;i<SIZE;i++)
+		for(int j=0; j<SIZE; j++){
             int y=LINES/2+(i-2)*3, x=COLS/2+(j-2)*5;
 			move(y,x);
 			if(on[0] == i && on[1] == j){
