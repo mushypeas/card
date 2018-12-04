@@ -60,6 +60,7 @@ int main() {
 						end = 0;
 				}
 			if(flip_count == 2){
+				turn++;
 				if(flip_name[0] == flip_name[1]){
 					for(int i=0; i<SIZE; i++)
 						for(int j=0; j<SIZE; j++)
@@ -125,12 +126,12 @@ int main() {
 				else if(key_in == 'Q' || key_in == 'q')
 					status = 2;
 				else if(key_in == ' '){
-					if(cards[on[0]][on[1]].status == 0){
-						turn++;
+					if(cards[on[0]][on[1]].status == 0)
 						cards[on[0]][on[1]].status = 1;
-					}
-					else if(cards[on[0]][on[1]].status == 1)
+					else if(cards[on[0]][on[1]].status == 1){
+						turn++;
 						cards[on[0]][on[1]].status = 0;
+					}
 				}
 			}
 		}
