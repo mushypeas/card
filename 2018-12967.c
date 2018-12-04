@@ -68,7 +68,9 @@ int main() {
 			}
 		}
 		if(end){
-			printf("WIN");
+			move(0,0);
+			_=system("clear");
+			printf("WIN\n");
 			return 0;
 		}
 		display(status);
@@ -195,6 +197,11 @@ void card_box(card cards,int y,int x){
 		addch(box_char(7)),addch(box_char(10)),addch(box_char(10)),addch(box_char(10)),addch(box_char(9)), move(y+1,x);
 		addch(box_char(11)),printw("   "),addch(box_char(11)), move(y+2,x);
 		addch(box_char(1)),addch(box_char(10)),addch(box_char(10)),addch(box_char(10)),addch(box_char(3));
+	}
+	else{
+		printw("     "), move(y+1,x);
+		printw("     "), move(y+2,x);
+		printw("     ");
 	}
 	return;
 }
