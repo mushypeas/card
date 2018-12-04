@@ -71,7 +71,7 @@ int main() {
 			move(0,0);
 			system("clear");
 			printf("WIN\n");
-			scanf("%d", m&enu);
+			scanf("%d", &menu);
 			break;
 		}
 		display(status);
