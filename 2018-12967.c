@@ -41,7 +41,7 @@ int main() {
     init_color(8, 999, 999, 999);
     init_color(1, 999, 300, 300);
     init_color(2, 300, 999, 300);
-    init_color(3, 300, 300, 999);
+    init_color(3, 400, 600, 999);
     init_pair(4, COLOR_BLACK, 8);
     init_pair(1, COLOR_BLACK, 1);
     init_pair(2, COLOR_BLACK, 2);
