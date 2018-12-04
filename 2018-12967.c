@@ -89,7 +89,7 @@ int main() {
 			}
 			if(end){
 				clear();
-				mvprintw(LINES/2,COLS/2-6,"YOU'RE WINNER!");
+				mvprintw(LINES/2-2,COLS/2-6,"YOU'RE WINNER!");
 				mvprintw(LINES/2+1,COLS/2-12,"You finished it in %d turns", turn);
 				if(record<0 || turn<record){
 					record = turn;
