@@ -33,12 +33,11 @@ int box_char(int x);
 void card_box();
 
 int main() {	
-
+	srand(time(NULL));
 	initialize();
     start_color();
     init_color(8, 999, 999, 999);
     init_pair(1, COLOR_BLACK, 8);
-	srand(time(NULL));
 	while(1) {
 		display(status);
 		int flip_count=0;
