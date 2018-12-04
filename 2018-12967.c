@@ -71,7 +71,8 @@ int main() {
 			move(LINES/2,COLS/2);
 			system("clear");
 			printw("YOU'RE WINNER\n");
-			scanf("%[\n]", &menu);
+			char * endit;
+			scanf("%[\n]", endit);
 			status = 0;
 		}
 		display(status);
