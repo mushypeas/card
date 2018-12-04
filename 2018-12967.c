@@ -71,7 +71,7 @@ int main() {
 			move(0,0);
 			_=system("clear");
 			printf("WIN\n");
-			return 0;
+			break;
 		}
 		display(status);
 		key_in = getch();
