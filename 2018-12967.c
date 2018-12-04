@@ -7,7 +7,7 @@
 #define up    259
 #define left  260
 #define right 261
-#define SIZE  2
+#define SIZE  4
 
 int key_in;
 
