@@ -133,10 +133,8 @@ int main() {
 				else if(key_in == ' '){
 					if(cards[on[0]][on[1]].status == 0)
 						cards[on[0]][on[1]].status = 1;
-					else if(cards[on[0]][on[1]].status == 1){
-						turn++;
+					else if(cards[on[0]][on[1]].status == 1)
 						cards[on[0]][on[1]].status = 0;
-					}
 				}
 			}
 		}
