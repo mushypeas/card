@@ -43,6 +43,10 @@ int main() {
 	char flip_name[2] = {'\0', '\0'};
 	while(1) {
 		display(status);
+		for(int i=0; i<4; i++)
+			for(int j=0; j<4; j++)
+				if(cards[i][j].status == 1)
+					flip_name[flip_count++] = cards[i][j].name;
 		if(flip_count == 2){
 			if(flip_name[0] == flip_name[1]){
 				sleep(1);
@@ -65,10 +69,6 @@ int main() {
 		display(status);
 		key_in = getch();
 		if(status){     //If in game
-			for(int i=0; i<4; i++)
-				for(int j=0; j<4; j++)
-					if(cards[i][j].status == 1)
-						flip_name[flip_count++] = cards[i][j].name;
 			if(key_in == up){
 				if(on[0] == 0)
 					on[0] = 3;
