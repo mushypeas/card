@@ -40,8 +40,8 @@ int main() {
     init_pair(1, COLOR_BLACK, 8);
 	srand(time(NULL));
 	while(1) {
-		display(status);
 		key_in = getch();
+		display(status);
 		if(status){     //If in game
 			int flip_count=0;
 			char flip_name[2] = {'\0', '\0'};
@@ -51,14 +51,14 @@ int main() {
 						flip_count++, flip_name[flip_count] = cards[i][j].name;
 			if(flip_count == 2){
 				if(flip_name[0] == flip_name[1]){
-					sleep(2);
+					sleep(1);
 					for(int i=0; i<4; i++)
 						for(int j=0; j<4; j++)
 							if(cards[i][j].status == 1)
 								cards[i][j].status = -1;
 				}
 				else{
-					sleep(2);
+					sleep(1);
 					for(int i=0; i<4; i++)
 						for(int j=0; j<4; j++)
 							if(cards[i][j].status == 1)
