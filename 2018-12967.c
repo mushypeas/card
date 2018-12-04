@@ -50,18 +50,21 @@ int main() {
 					if(cards[i][j].status == 1)
 						flip_name[flip_count++] = cards[i][j].name;
 			if(flip_count == 2){
-				if(flip_name[0] == flip_name[1])
+				if(flip_name[0] == flip_name[1]){
+					sleep(0.5);
 					for(int i=0; i<4; i++)
 						for(int j=0; j<4; j++)
 							if(cards[i][j].status == 1)
 								cards[i][j].status = -1;
-				else
+				}
+				else{
+					sleep(0.5);
 					for(int i=0; i<4; i++)
 						for(int j=0; j<4; j++)
 							if(cards[i][j].status == 1)
 								cards[i][j].status = 0;
-				sleep(0.5);
-				display(status), fflush(stdout);
+				}
+				display(status);
 			}
 			if(key_in == up){
 				if(on[0] == 0)
