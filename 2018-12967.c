@@ -70,10 +70,9 @@ int main() {
 		if(end){
 			move(LINES/2,COLS/2);
 			system("clear");
-			printw("WIN\n");
-			scanf("%d", &menu);
+			printw("YOU'RE WINNER\n");
+			scanf("%[\n]", &menu);
 			status = 0;
-			break;
 		}
 		display(status);
 		key_in = getch();
