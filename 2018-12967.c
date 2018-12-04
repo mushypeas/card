@@ -24,7 +24,7 @@ typedef struct{
 card cards[SIZE][SIZE];		// Cards
 int on[2] = {0,0};      // The card the player is on
 int menu = 0;           // 0: game start 1: exit
-int status = 0;         // 0: menu 1: game
+int status = 0;         // 0: menu 1: game 2: pause
 int end = 0;
 
 void initialize();
@@ -40,7 +40,7 @@ int main() {
     init_color(8, 999, 999, 999);
     init_pair(1, COLOR_BLACK, 8);
 	while(1) {
-		if(status){     //If in game
+		if(status == 1){     //If in game
 			end = 1;
 			display(status);
 			int flip_count=0;
@@ -109,7 +109,7 @@ int main() {
 				if(cards[on[0]][on[1]].status == 0)
 					cards[on[0]][on[1]].status = 1;
 		}
-		else{          //If in menu
+		else if(status == 0){          //If in menu
 			display(status);
 			key_in = getch();
 			if(key_in == up)
@@ -120,11 +120,23 @@ int main() {
 				if(menu)
 					break;
 				else{
-					initialize();
 					status = 1;
+					initialize();
 				}
 			}
 		}
+		else if(status == 2){
+			display(status);
+			key_in = getch();
+			if(key_in == 'q' || key_in == 'Q')
+				status = 1;
+			else if(key_in == 'r' || key_in == 'R'){
+				initialize();
+				status = 1;
+				}
+			else if(key_in == '\n')
+				status = 0;
+			}
 	}
 
 	endwin();	// Do NOT modify
@@ -160,10 +172,16 @@ void initialize() {
 
 void display(int s) {
 	clear();
-	if(s)
+	if(s == 1)
 		display_gameboard();
-	else
+	else if(s == 0)
 		display_menu();
+	else{
+		mvprintw(LINES/2-1,COLS/2-5,"- PAUSED -");
+		mvprintw(LINES/2+1,COLS/2-6,"Q/q: Resume");
+		mvprintw(LINES/2+2,COLS/2-6,"R/r: Restart");
+		mvprintw(LINES/2+3,COLS/2-6,"Enter: MENU");
+	}
 	refresh();
 }
 void display_menu(){
