@@ -42,6 +42,7 @@ int main() {
 	int flip_count=0;
 	char flip_name[2] = {'\0', '\0'};
 	while(1) {
+		display(status);
 		if(flip_count == 2){
 			if(flip_name[0] == flip_name[1]){
 				sleep(1);
