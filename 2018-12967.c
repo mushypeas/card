@@ -242,9 +242,9 @@ void display_menu(){
 		addch(box_char(1)),printw("                    "),addch(box_char(3));
 	}
 	if(record<0)
-		mvprintw(y+7, x+3,"High Score: --");
+		mvprintw(y+7, x+4,"High Score: --");
 	else
-		mvprintw(y+7, x+3,"High Score: %d",record);
+		mvprintw(y+7, x+4,"High Score: %d",record);
 
 	return;
 }
