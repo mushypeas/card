@@ -68,6 +68,9 @@ int main() {
 			}
 			else if(key_in == 'Q' || key_in == 'q')
 				status = 0;
+			else if(key_in == ' '){
+				cards[on[0]][on[1]].status = 1;
+			}
 		}
 		else{          //If in menu
 			if(key_in == up)
