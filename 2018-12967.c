@@ -37,7 +37,7 @@ int main() {
 	mvprintw(LINES/2-2,COLS/2-12,"ENTER SIZE OF BOARD (1<N<8)");
 	move(LINES/2,COLS/2);
 	SIZE = getch();
-	global card cards[SIZE][SIZE];		// Cards
+	static card cards[SIZE][SIZE];		// Cards
 	initialize();
     start_color();
     init_color(8, 999, 999, 999);
