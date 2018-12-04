@@ -148,13 +148,13 @@ void display_menu(){
 	}
 	return;
 }
-void card_box(card cards[i][j],int y,int x){
-	if(cards[i][j].status == 0){
+void card_box(card cards,int y,int x){
+	if(cards.status == 0){
 		addch(box_char(7)),addch(box_char(10)),addch(box_char(10)),addch(box_char(10)),addch(box_char(9)), move(y+1,x);
-		addch(box_char(11)),printw(" %c ", cards[i][j].name),addch(box_char(11)), move(y+2,x);
+		addch(box_char(11)),printw(" %c ", cards.name),addch(box_char(11)), move(y+2,x);
 		addch(box_char(1)),addch(box_char(10)),addch(box_char(10)),addch(box_char(10)),addch(box_char(3));
 	}
-	else if(cards[i][j].status == 1){
+	else if(cards.status == 1){
 		addch(box_char(7)),addch(box_char(10)),addch(box_char(10)),addch(box_char(10)),addch(box_char(9)), move(y+1,x);
 		addch(box_char(11)),printw("   "),addch(box_char(11)), move(y+2,x);
 		addch(box_char(1)),addch(box_char(10)),addch(box_char(10)),addch(box_char(10)),addch(box_char(3));
