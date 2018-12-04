@@ -125,9 +125,10 @@ int main() {
 				else if(key_in == 'Q' || key_in == 'q')
 					status = 2;
 				else if(key_in == ' '){
-					turn++;
-					if(cards[on[0]][on[1]].status == 0)
+					if(cards[on[0]][on[1]].status == 0){
+						turn++;
 						cards[on[0]][on[1]].status = 1;
+					}
 					else if(cards[on[0]][on[1]].status == 1)
 						cards[on[0]][on[1]].status = 0;
 				}
